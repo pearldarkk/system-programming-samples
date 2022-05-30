@@ -9,7 +9,11 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${fileDirname}/${fileBasenameNoExtension}",
-            "args": [],
+            "args": [
+                "-r"
+                ".h",
+                "~/sysprog",
+            ],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
             "environment": [],
