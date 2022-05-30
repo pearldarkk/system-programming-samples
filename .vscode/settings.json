@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "*.sage": "python",
+        "dirent.h": "c",
+        "tlpi_hdr.h": "c"
+    }
+}
