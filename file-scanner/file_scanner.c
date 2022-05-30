@@ -1,3 +1,4 @@
+#define _GNU_SOURCE
 #define _XOPEN_SOURCE 500 /* Get nftw() declaration */
 #include <dirent.h>
 #include <ftw.h>
@@ -39,7 +40,7 @@ static int scanFile(const char *dirpath) {
     }
     while ((dp = readdir(dirp)) != NULL) {
         // regular file
-        if (dp->d_type == 8)
+        if (dp->d_type == DT_REG)
             if (strstr(dp->d_name, keyword))
                 printf("%s/%s\n", dirpath, dp->d_name);
     }
