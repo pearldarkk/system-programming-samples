@@ -11,6 +11,7 @@
                 "-fdiagnostics-color=always",
                 "-g",
                 "${file}",
+                "-lpthread",
                 "-o",
                 "${relativeFileDirname}/${fileBasenameNoExtension}",
             ],

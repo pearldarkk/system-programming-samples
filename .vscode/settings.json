@@ -3,6 +3,7 @@
         "*.sage": "python",
         "dirent.h": "c",
         "tlpi_hdr.h": "c",
-        "inet.h": "c"
+        "inet.h": "c",
+        "socket.h": "c"
     }
 }

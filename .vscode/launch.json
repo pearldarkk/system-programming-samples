@@ -9,7 +9,10 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${fileDirname}/${fileBasenameNoExtension}",
-            "args": [],
+            "args": [
+                "192.168.61.140",
+                "2606",
+            ],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
             "environment": [],

@@ -46,20 +46,13 @@ int main(int argc, char **argv) {
         exit(EXIT_FAILURE);
     }
     freeaddrinfo(peer_address);
-    char *read;
-    read = (char *)malloc(1024);
-    size_t size;
+    char read[1024];
     size_t len;
     size_t bytes;
     while (1) {
         memset(read, 0, sizeof read);
-        len = getline(&read, &size, stdin);
+        len = fread(read, 1, 1024, stdin);
         send(sock_peer, read, len, 0);
-        if (strncmp(read, "exit()", 6) == 0 || len == EOF) {
-            close(sock_peer);
-            fprintf(stderr, "Disconnected from server\n");
-            exit(EXIT_FAILURE);
-        }
         memset(read, 0, sizeof read);
         if ((bytes = recv(sock_peer, read, 1024, 0)) < 0)
             fprintf(stderr, "Error receiving data\n");
@@ -67,6 +60,11 @@ int main(int argc, char **argv) {
             // echo
             for (int i = 0; i < bytes; ++i)
                 fputc((unsigned char)read[i], stdout);
+        if (len < 1024) {  // reach EOF
+            close(sock_peer);
+            fprintf(stderr, "Disconnected from server\n");
+            exit(EXIT_FAILURE);
+        }
     }
     close(sock_peer);
 
