@@ -47,12 +47,13 @@ int main(int argc, char **argv) {
     }
     freeaddrinfo(peer_address);
     char *read;
-    read = (char *)malloc(1024);
-    size_t size;
+    size_t size = 1024;
+    read = (char *)malloc(size);
     size_t len;
     size_t bytes;
     while (1) {
         memset(read, 0, sizeof read);
+        // reallocate if needed
         len = getline(&read, &size, stdin);
         send(sock_peer, read, len, 0);
         if (strncmp(read, "exit()", 6) == 0 || len == EOF) {
@@ -61,7 +62,7 @@ int main(int argc, char **argv) {
             exit(EXIT_FAILURE);
         }
         memset(read, 0, sizeof read);
-        if ((bytes = recv(sock_peer, read, 1024, 0)) < 0)
+        if ((bytes = recv(sock_peer, read, len, 0)) < 0)
             fprintf(stderr, "Error receiving data\n");
         else
             // echo
@@ -69,6 +70,5 @@ int main(int argc, char **argv) {
                 fputc((unsigned char)read[i], stdout);
     }
     close(sock_peer);
-
     exit(EXIT_SUCCESS);
 }
