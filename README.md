@@ -1,5 +1,5 @@
-# System Programming - VCS
+# System Programming Examples
 
 Branches:
-- windows: Window system programming 1 - 3
-- linux: Linux system programming 4 - 6
+- windows: Window system programming 
+- linux: Linux system programming 
